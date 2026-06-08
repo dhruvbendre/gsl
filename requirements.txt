@@ -7,7 +7,6 @@ supabase
 langchain
 reportlab
 groq
-re
 
 
 langchain
