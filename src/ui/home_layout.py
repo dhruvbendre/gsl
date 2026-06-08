@@ -190,7 +190,7 @@ def home_header():
         }
 
         /* Targeted Mobile Breakpoint (Phones) */
-        @media (max-width: 576px) {
+        @media (max-width: 700px) {
             /* Kill default left-alignment on all Streamlit parent wrapper containers */
             .hero-container, 
             .hero-container div, 
