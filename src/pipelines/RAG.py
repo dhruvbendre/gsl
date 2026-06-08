@@ -9,7 +9,7 @@ import chromadb
 import uuid
 
 def load_all_pdfs():
-    folder_path = "C:/Users/Dhruv Bendre/OneDrive/Desktop/Get Set Learn Hackathon/src/database"
+    folder_path = "src/database"
     num_docs = 0
     all_docs = []
 
@@ -54,7 +54,7 @@ class EmbeddingManager:
         return embeddings
     
 class VectorStoreManager:
-    def __init__(self, persist_directory="C:/Users/Dhruv Bendre/OneDrive/Desktop/Get Set Learn Hackathon/src/database", collection_name="pdf_documents"):
+    def __init__(self, persist_directory="src/database", collection_name="pdf_documents"):
         self.collection_name = collection_name
         self.persist_directory = persist_directory
         self.collection = None
