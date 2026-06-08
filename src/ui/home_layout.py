@@ -30,6 +30,7 @@ def home_header():
                 
         .block-container {
             padding-top: 2rem !important;    
+            max-width: 100% !important; /* Ensures the container utilizes full layout width */
         }
 
         /* Target the internal container card inside modals/dialog pops to clear white space */
@@ -40,51 +41,46 @@ def home_header():
         }
 
         /* --- GLOBAL NATIVE STREAMLIT BUTTON OVERRIDES ("BUTTON-53" POP ART DESIGN) --- */
-        /* Target BOTH normal buttons and download buttons explicitly */
         div.stButton > button, 
         div.stDownloadButton > button,
         div.stDownloadButton > a {
             background-color: #3DD1E7 !important;
-            border: 3px solid #000000 !important; /* Thick comic casing */
+            border: 3px solid #000000 !important;
             box-sizing: border-box !important;
             color: #000000 !important;
             display: flex !important;
-            
-            /* --- FORCE PUNCHY "LUCKIEST GUY" TYPOGRAPHY FOR KIDS --- */
             font-family: 'Luckiest Guy', cursive !important;
-            font-size: 1.15rem !important;       /* Adjusted down to keep long labels on one row */
+            font-size: 1.15rem !important;      
             letter-spacing: 0.5px !important;
             text-transform: uppercase !important; 
-            
             justify-content: center !important;
-            align-items: center !important;      /* Centers text vertically inside the button */
-            line-height: 1.2rem !important;       /* Tightened line height prevents container clipping */
-            padding: .6rem 1rem !important;       /* Clean padding gives text breathing room */
+            align-items: center !important;      
+            line-height: 1.2rem !important;       
+            padding: .6rem 1rem !important;       
             position: relative !important;
             text-align: center !important;
             text-decoration: none !important;
             width: 100% !important;
             max-width: 460px !important;
             cursor: pointer !important;
-            transform: rotate(-2deg) !important; /* Classic organic tilt angle */
+            transform: rotate(-2deg) !important; 
             user-select: none !important;
             -webkit-user-select: none !important;
             touch-action: manipulation !important;
-            border-radius: 12px !important; /* Thick curved block edges */
-            box-shadow: 4px 4px 0px #000000 !important; /* Flat heavy retro shadow dropped down */
+            border-radius: 12px !important; 
+            box-shadow: 4px 4px 0px #000000 !important; 
             transition: all 0.1s ease !important;
-            white-space: nowrap !important;      /* CRITICAL: Disallows text wrapping entirely */
+            white-space: nowrap !important;      
         }
 
-        /* Prevent Streamlit inner paragraph markers from stepping on the comic typography choice */
         div.stButton > button p, 
         div.stDownloadButton > button p,
         div.stDownloadButton > a span {
             font-family: 'Luckiest Guy', cursive !important;
             color: #000000 !important;
             font-size: 1.15rem !important;
-            white-space: nowrap !important;      /* Forces inner text components to never warp */
-            margin: 0 !important;                /* Strip default layout spacing margins */
+            white-space: nowrap !important;      
+            margin: 0 !important;                
             padding: 0 !important;
         }
 
@@ -99,7 +95,7 @@ def home_header():
         div.stButton > button:hover,
         div.stDownloadButton > button:hover,
         div.stDownloadButton > a:hover {
-            background-color: #A3FFF4 !important; /* Glow up neon highlight on interaction hover */
+            background-color: #A3FFF4 !important; 
             color: #000000 !important;
             transform: rotate(-2deg) scale(1.02) !important;
             box-shadow: 6px 6px 0px #000000 !important;
@@ -112,13 +108,12 @@ def home_header():
             box-shadow: 2px 2px 0px #000000 !important;
         }
 
-        /* Desktop Media Breakpoint: Scales up sizing cleanly when screen allows */
         @media (min-width: 768px) {
             div.stButton > button,
             div.stDownloadButton > button,
             div.stDownloadButton > a {
-                padding: .75rem 2rem !important;  /* Strategic horizontal desktop spacing */
-                font-size: 1.35rem !important;    /* Clean size configuration that avoids breaks */
+                padding: .75rem 2rem !important;  
+                font-size: 1.35rem !important;    
             }
             div.stButton > button p, 
             div.stDownloadButton > button p {
@@ -126,27 +121,26 @@ def home_header():
             }
         }
 
-        /* --- END OF BUTTON-53 LAYERING --- */
-
-        /* Centered Hero Header Container */
+        /* --- HERO CONTAINER UPDATES --- */
         .hero-container {
             display: flex;
             justify-content: center; 
             align-items: center;     
             width: 100%;
-            padding-top: 1rem !important;
-            padding-bottom: 0rem !important; 
-            margin-bottom: -1.5rem !important; 
+            padding: 1rem 0rem !important;
+            margin: 0 auto !important;
             text-align: center;      
+            overflow: hidden; /* Prevents text overflow leaks */
         }
         
-        /* THE ANIMATED MEGA HEADER */
+        /* THE FLUID MEGA HEADER */
         .mega-header {
             font-family: 'Montserrat', sans-serif;
-            font-size: 6.5rem !important;  
+            /* Uses fluid sizing (11% of the total viewport width) with constraints */
+            font-size: clamp(2.8rem, 11vw, 6.5rem) !important;  
             font-weight: 900 !important;   
-            letter-spacing: -4px !important; 
-            line-height: 0.85 !important;
+            letter-spacing: -0.05em !important; /* Relative spacing scales with font size */
+            line-height: 0.9 !important;
             margin: 0 auto !important; 
             text-transform: uppercase;
             display: inline-block;
@@ -156,8 +150,7 @@ def home_header():
             background-clip: text !important;
             -webkit-text-fill-color: transparent !important;
             animation: shineShimmer 4s linear infinite !important;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
+            white-space: nowrap !important; /* Prevents word breakdown splitting */
         }
 
         @keyframes shineShimmer {
@@ -169,7 +162,7 @@ def home_header():
         .sub-header {
             font-family: 'Fredoka', sans-serif !important;
             font-weight: 600 !important;
-            font-size: 2rem !important;   
+            font-size: clamp(1.3rem, 4vw, 2rem) !important;   
             color: #FFFFFF !important;
             margin-top: 0.8rem !important; 
             margin-bottom: 0px !important;
@@ -182,36 +175,22 @@ def home_header():
             color: #FFFFFF !important;
         }
 
-        /* --- NEW: MOBILE RESPONSIVE MEDIA BREAKPOINTS --- */
-        @media (max-width: 992px) {
-            .mega-header { font-size: 4.5rem !important; letter-spacing: -2px !important; }
-        }
-
-        /* Targeted Mobile Breakpoint (Phones) */
+        /* Responsive padding safety drop for tiny screen profiles */
         @media (max-width: 576px) {
-            .mega-header { 
-                font-size: 2.8rem !important;     /* Shrinks dynamically so 'HACKATHON' fits single-row */
-                letter-spacing: -1px !important;  /* Relaxes the negative letter spacing to be readable */
-                line-height: 1.0 !important;      /* Prevents any potential top/bottom clipping */
-            }
-            .sub-header {
-                font-size: 1.4rem !important;     /* Scales subheaders gracefully alongside it */
-            }
             .block-container {
-                padding-top: 1rem !important;    /* Reduces dead container space on mobile viewports */
+                padding-top: 1rem !important;    
             }
         }
                 
         /* --- INFO CARDS HORIZONTAL 3-COLUMN LAYOUT --- */
         .card-container {
             display: grid;
-            grid-template-columns: 1fr; /* Defaults to single column for mobile screen boundaries */
+            grid-template-columns: 1fr; 
             gap: 1.5rem;
             width: 100%;
             padding: 1rem 0rem;
         }
 
-        /* Tablet & Desktop Breakpoint: Forces exactly 3 items inline without breaking layouts */
         @media (min-width: 768px) {
             .card-container {
                 grid-template-columns: repeat(3, 1fr) !important;
@@ -230,12 +209,11 @@ def home_header():
             flex-direction: column;
         }
 
-        /* Fun hover animation when kids or parents mouse over the cards */
         .info-card:hover {
             transform: translateY(-4px) scale(1.02) !important;
             box-shadow: 8px 8px 0px #000000 !important;
             background-color: rgba(255, 255, 255, 0.18) !important;
-            border-color: #A3FFF4 !important; /* Soft glowing border highlight */
+            border-color: #A3FFF4 !important; 
         }
 
         .card-icon {
@@ -248,7 +226,7 @@ def home_header():
             font-family: 'Fredoka', sans-serif !important;
             font-size: 1.5rem !important;
             font-weight: 700 !important;
-            color: #A3FFF4 !important; /* Bright cyan titles look crisp against dark teal */
+            color: #A3FFF4 !important; 
             margin: 0.2rem 0rem 0.6rem 0rem !important;
             line-height: 1.3 !important;
         }
