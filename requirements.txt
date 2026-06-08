@@ -7,15 +7,11 @@ supabase
 langchain
 reportlab
 groq
-
-
-langchain
 langchain-community
 sentence-transformers
 chromadb
 pypdf
 pymupdf
-langchain_text_splitters
-uuid
+langchain-text-splitters
 langchain-groq
 torchvision
