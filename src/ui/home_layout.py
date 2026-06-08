@@ -189,13 +189,24 @@ def home_header():
 
         /* Targeted Mobile Breakpoint (Phones) */
         @media (max-width: 576px) {
+            .hero-container {
+                justify-content: center !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                width: 100% !important;
+            }
             .mega-header { 
                 font-size: 2.8rem !important;     /* Shrinks dynamically so 'HACKATHON' fits single-row */
-                letter-spacing: -1px !important;  /* Relaxes the negative letter spacing to be readable */
+                letter-spacing: 0px !important;   /* FIXED: Removed negative spacing on mobile to eliminate off-center trailing shift */
                 line-height: 1.0 !important;      /* Prevents any potential top/bottom clipping */
+                text-align: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                display: block !important;        /* Structural switch to block makes margin centering absolute */
             }
             .sub-header {
                 font-size: 1.4rem !important;     /* Scales subheaders gracefully alongside it */
+                text-align: center !important;
             }
             .block-container {
                 padding-top: 1rem !important;    /* Reduces dead container space on mobile viewports */

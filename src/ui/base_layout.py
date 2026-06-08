@@ -174,6 +174,43 @@ def style_base_layout():
                 font-size: 1.35rem !important;
             }
         }
+
+        /* --- 6. PATCH: ISOLATE AND REVERT DIALOG POPUP BUTTONS TO NORMAL --- */
+        [data-testid="stDialog"] button, 
+        [data-testid="stDialog"] div.stButton > button,
+        [data-testid="stDialog"] [data-testid="stBaseButton-secondary"] {
+            background-color: transparent !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: #FFFFFF !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 1rem !important;
+            text-transform: none !important;
+            transform: none !important;
+            box-shadow: none !important;
+            border-radius: 8px !important;
+            padding: 0.5rem 1rem !important;
+            letter-spacing: normal !important;
+            width: auto !important;
+            display: inline-flex !important;
+        }
+
+        [data-testid="stDialog"] button p,
+        [data-testid="stDialog"] div.stButton > button p {
+            font-family: 'Outfit', sans-serif !important;
+            color: #FFFFFF !important;
+            font-size: 1rem !important;
+            text-transform: none !important;
+        }
+
+        /* Dialog Button Hover State */
+        [data-testid="stDialog"] button:hover, 
+        [data-testid="stDialog"] div.stButton > button:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            border-color: #FFFFFF !important;
+            color: #FFFFFF !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
         </style>  
         """,
         unsafe_allow_html=True,
