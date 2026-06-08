@@ -40,7 +40,7 @@ def register_dialog():
     member3 = st.text_input("Member 4",width="stretch")
 
     if st.button("Proceed further", use_container_width=True):
-        with st.spinner():
+        with st.spinner("Let's get you registered..."):
             if fullname and email and mobile and schoolname and teamname and teamsize and city and pincode:
                 try:
                     # 1. Save data into registrations table
@@ -61,15 +61,35 @@ def register_dialog():
                         st.error("Failed to generate a registration record.")
                         
                 except Exception as e:
-                    st.error(f"Error saving data: {str(e)}")
+        # Extract the detailed message if it's a Supabase/PostgREST error, otherwise use standard string
+                    error_msg = getattr(e, 'message', str(e)).lower()
+                    
+                    # User-friendly error mapping
+                    if "email" in error_msg and ("unique" in error_msg or "already exists" in error_msg):
+                        st.error("✉️ This email address is already registered. Please use a different one.")
+
+                    elif "teamname" in error_msg or "team_name" in error_msg and ("unique" in error_msg or "already exists" in error_msg):
+                        st.error("👥 This team name is already taken. Please choose a unique name for your team.")
+
+                    elif "team_size" in error_msg or "limit" in error_msg:
+                        st.error("🚫 Team size limit exceeded. Teams cannot have more than 4 members.")
+
+                    elif "email_format" in error_msg or "invalid input syntax for type email" in error_msg:
+                        st.error("✉️ Please enter a valid email address.")
+                        
+                    else:
+                        # Fallback for unexpected errors (still keeping it clean for the user)
+                        st.error("⚠️ Something went wrong while saving your details. Please double-check your inputs.")
+                        # Optional: Log the real error to your terminal for debugging
+                        print(f"DEBUG DB ERROR: {e}")
+                        
             else:
                 st.error("Please fill all the fields marked with an asterisk (*)")
+            
+                
+                    
+                
+                    
 
- 
-    
-        
-    
-        
 
-
-    
+                
