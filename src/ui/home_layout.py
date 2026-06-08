@@ -156,6 +156,8 @@ def home_header():
             background-clip: text !important;
             -webkit-text-fill-color: transparent !important;
             animation: shineShimmer 4s linear infinite !important;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         @keyframes shineShimmer {
@@ -180,8 +182,24 @@ def home_header():
             color: #FFFFFF !important;
         }
 
+        /* --- NEW: MOBILE RESPONSIVE MEDIA BREAKPOINTS --- */
         @media (max-width: 992px) {
             .mega-header { font-size: 4.5rem !important; letter-spacing: -2px !important; }
+        }
+
+        /* Targeted Mobile Breakpoint (Phones) */
+        @media (max-width: 576px) {
+            .mega-header { 
+                font-size: 2.8rem !important;     /* Shrinks dynamically so 'HACKATHON' fits single-row */
+                letter-spacing: -1px !important;  /* Relaxes the negative letter spacing to be readable */
+                line-height: 1.0 !important;      /* Prevents any potential top/bottom clipping */
+            }
+            .sub-header {
+                font-size: 1.4rem !important;     /* Scales subheaders gracefully alongside it */
+            }
+            .block-container {
+                padding-top: 1rem !important;    /* Reduces dead container space on mobile viewports */
+            }
         }
                 
         /* --- INFO CARDS HORIZONTAL 3-COLUMN LAYOUT --- */
