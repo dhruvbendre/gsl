@@ -1,8 +1,10 @@
 import streamlit as st
 
+
 def home_header():
     # 1. INJECT ANIMATED BACKGROUND & COSCO-STYLE POP ART OVERRIDES EXCLUSIVELY FOR HOME
-    st.markdown("""
+    st.markdown(
+        """
         <style>
         /* Import the perfect playful font combo: Fredoka & Luckiest Guy */
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
@@ -130,14 +132,14 @@ def home_header():
 
         /* Centered Hero Header Container */
         .hero-container {
-            display: flex;
-            justify-content: center; 
-            align-items: center;     
-            width: 100%;
+            display: flex !important;
+            justify-content: center !important; 
+            align-items: center !important;     
+            width: 100% !important;
             padding-top: 1rem !important;
             padding-bottom: 0rem !important; 
             margin-bottom: -1.5rem !important; 
-            text-align: center;      
+            text-align: center !important;      
         }
         
         /* THE ANIMATED MEGA HEADER */
@@ -189,27 +191,36 @@ def home_header():
 
         /* Targeted Mobile Breakpoint (Phones) */
         @media (max-width: 576px) {
-            .hero-container {
+            /* Kill default left-alignment on all Streamlit parent wrapper containers */
+            .hero-container, 
+            .hero-container div, 
+            [data-testid="stMarkdownContainer"] .hero-container {
+                display: flex !important;
                 justify-content: center !important;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
+                align-items: center !important;
+                text-align: center !important;
+                width: 100% !important;
+                margin: 0 auto !important;
+            }
+            
+            .mega-header { 
+                font-size: 2.8rem !important;     /* Fits 'HACKATHON' onto a single row cleanly */
+                letter-spacing: 0px !important;   /* Eliminates horizontal spacing bias gaps */
+                line-height: 1.1 !important;      
+                text-align: center !important;
+                margin: 0 auto !important;
+                display: block !important;        /* Structural switch overrides default element constraints */
                 width: 100% !important;
             }
-            .mega-header { 
-                font-size: 2.8rem !important;     /* Shrinks dynamically so 'HACKATHON' fits single-row */
-                letter-spacing: 0px !important;   /* FIXED: Removed negative spacing on mobile to eliminate off-center trailing shift */
-                line-height: 1.0 !important;      /* Prevents any potential top/bottom clipping */
-                text-align: center !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-                display: block !important;        /* Structural switch to block makes margin centering absolute */
-            }
+            
             .sub-header {
-                font-size: 1.4rem !important;     /* Scales subheaders gracefully alongside it */
+                font-size: 1.4rem !important;    
                 text-align: center !important;
+                width: 100% !important;
             }
+            
             .block-container {
-                padding-top: 1rem !important;    /* Reduces dead container space on mobile viewports */
+                padding-top: 1rem !important;    
             }
         }
                 
@@ -273,11 +284,16 @@ def home_header():
             margin: 0 !important;
         }
         </style>
-    """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True,
+    )
 
     # 2. RENDER THE MEGA TITLE
-    st.markdown("""
+    st.markdown(
+        """
         <div class="hero-container">
             <h2 class="mega-header">HACKATHON</h2>
         </div>
-    """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True,
+    )
