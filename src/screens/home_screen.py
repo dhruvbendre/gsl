@@ -17,7 +17,7 @@ def home_screen():
             register_dialog()
 
     with col2:
-        with open("C:/Users/Dhruv Bendre/OneDrive/Desktop/Get Set Learn Hackathon/STEM_Hackathon_Brochure.pdf", "rb") as file:
+        with open("assets/STEM_Hackathon_Brochure.pdf", "rb") as file:
             st.download_button(
                 label="Brochure",
                 data=file,
