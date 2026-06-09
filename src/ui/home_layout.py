@@ -195,10 +195,22 @@ def home_header():
             margin: 0px 4px !important;
         }
         
-        .stem-s { color: #8BE314 !important; -webkit-text-fill-color: #8BE314 !important; } 
-        .stem-t { color: #FFD200 !important; -webkit-text-fill-color: #FFD200 !important; } 
-        .stem-e { color: #7B2CBF !important; -webkit-text-fill-color: #7B2CBF !important; } 
-        .stem-m { color: #FF007A !important; -webkit-text-fill-color: #FF007A !important; }
+        .stem-s { 
+            color: #FFFFFF !important; 
+            -webkit-text-fill-color: #FFFFFF !important; 
+        } 
+        .stem-t { 
+            color: #FFFFFF !important; 
+            -webkit-text-fill-color: #FFFFFF !important; 
+        } 
+        .stem-e { 
+            color: #FFFFFF !important; 
+            -webkit-text-fill-color: #FFFFFF !important; 
+        } 
+        .stem-m { 
+            color: #FFFFFF !important; 
+            -webkit-text-fill-color: #FFFFFF !important; 
+        }
                 
         .sub-header {
             font-family: 'Fredoka', sans-serif !important;
