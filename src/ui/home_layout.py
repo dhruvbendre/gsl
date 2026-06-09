@@ -203,6 +203,14 @@ def home_header():
                 margin: 0 auto !important;
             }
             
+            /* ADDED: Kill the layout space of the link anchor to prevent visual shifting */
+            .hero-container a.element-anchor {
+                display: none !important;
+                width: 0px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
             .mega-header { 
                 font-size: 2.8rem !important;     /* Fits 'HACKATHON' onto a single row cleanly */
                 letter-spacing: 0px !important;   /* Eliminates horizontal spacing bias gaps */
