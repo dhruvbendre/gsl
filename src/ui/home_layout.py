@@ -190,9 +190,10 @@ def home_header():
             line-height: 1.0 !important;
             margin-bottom: 0.5rem !important;
             letter-spacing: 2px !important;
+            white-space: nowrap !important; /* Prevent separation on desktop layout rows */
         }
         .stem-container span {
-            display: inline-block;
+            display: inline-block !important;
             -webkit-text-stroke: 3px #000000 !important;
             text-stroke: 3px #000000;
             paint-order: stroke fill;
@@ -249,11 +250,18 @@ def home_header():
                 width: 100% !important;
             }
 
+            /* FIXED: Forces letters to stick side-by-side on mobile phones */
             .stem-container {
                 font-size: 4rem !important;
                 margin-top: 0px !important;
                 margin-bottom: 0px !important;
                 display: block !important;         
+                white-space: nowrap !important; /* CRITICAL: Absolutely blocks text-wrapping down columns */
+                width: 100% !important;
+            }
+
+            .stem-container span {
+                display: inline-block !important; /* Locks individual components side by side */
             }
             
             .sub-header {
@@ -329,7 +337,7 @@ def home_header():
         unsafe_allow_html=True,
     )
 
-    # 2. RENDER THE MEGA TITLE WRAPPED IN DIVS TO ESCAPE STREAMLIT LINK ANCHOR INJECTION
+    # 2. RENDER THE MEGA TITLE
     st.markdown(
         """
         <div class="hero-container">
