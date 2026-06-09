@@ -300,7 +300,7 @@ def home_header():
     st.markdown(
         """
         <div class="hero-container">
-            <h2 class="mega-header">HACKATHON</h2>
+            <h2 class="mega-header">HACKATHON STEM</h2>
         </div>
         """,
         unsafe_allow_html=True,
