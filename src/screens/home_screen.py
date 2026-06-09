@@ -9,7 +9,6 @@ from langchain_groq import ChatGroq
 
 def home_screen():
     home_header()
-    st.subheader("Get Set Learn",text_alignment="center")
     st.video("https://youtu.be/QTPSSerVZsc?si=tOKK4BglVKpj57EG")
     col1,col2,col3 = st.columns(3)
     with col1:
