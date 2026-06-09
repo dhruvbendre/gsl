@@ -143,18 +143,20 @@ def home_header():
             text-align: center !important;      
         }
         
-        /* HIDE THE HOVER LINK ICON ENTIRELY ON ALL SCREEN SIZES */
+        /* HIDE ANY GHOST STREAMLIT ANCHORS FORCEFULLY */
+        .hero-container a, 
         .hero-container a.element-anchor,
         [data-testid="stMarkdownContainer"] a.element-anchor {
             display: none !important;
             visibility: hidden !important;
+            opacity: 0 !important;
             width: 0px !important;
             height: 0px !important;
             margin: 0 !important;
             padding: 0 !important;
         }
         
-        /* THE ANIMATED MEGA HEADER */
+        /* THE ANIMATED MEGA HEADER (HACKATHON) */
         .mega-header {
             font-family: 'Montserrat', sans-serif;
             font-size: 5.5rem !important;  
@@ -180,18 +182,21 @@ def home_header():
             100% { background-position: -200% center; transform: scale(1); }
         }
 
-        /* INDIVIDUAL POP-ART STEM COLORS WITH THICK BLACK BORDER STROKE */
+        /* POSTER-MATCHED COMIC LAYOUT FOR STEM */
         .stem-container {
-            display: inline-block;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            margin-left: 15px;
+            display: block;
+            font-family: 'Luckiest Guy', cursive !important;
+            font-size: 6.5rem !important;
+            line-height: 1.0 !important;
+            margin-bottom: 0.5rem !important;
+            letter-spacing: 2px !important;
         }
         .stem-container span {
-            /* Cross-browser thick black outline text border stroke */
-            -webkit-text-stroke: 2px #000000 !important;
-            text-stroke: 2px #000000;
-            paint-order: stroke fill; /* Ensures the thick black border sits behind the colored fill */
+            display: inline-block;
+            -webkit-text-stroke: 3px #000000 !important;
+            text-stroke: 3px #000000;
+            paint-order: stroke fill;
+            filter: drop-shadow(4px 4px 0px #000000);
         }
         .stem-s { color: #8BE314 !important; -webkit-text-fill-color: #8BE314 !important; } 
         .stem-t { color: #FFD200 !important; -webkit-text-fill-color: #FFD200 !important; } 
@@ -214,9 +219,10 @@ def home_header():
             color: #FFFFFF !important;
         }
 
-        /* --- NEW: MOBILE RESPONSIVE MEDIA BREAKPOINTS --- */
+        /* --- MOBILE RESPONSIVE MEDIA BREAKPOINTS --- */
         @media (max-width: 992px) {
             .mega-header { font-size: 4rem !important; letter-spacing: -1px !important; }
+            .stem-container { font-size: 5rem !important; }
         }
 
         /* Targeted Mobile Breakpoint (Phones) */
@@ -244,10 +250,10 @@ def home_header():
             }
 
             .stem-container {
-                margin-left: 0px !important;
-                margin-top: 5px !important;
+                font-size: 4rem !important;
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
                 display: block !important;         
-                margin-bottom: -10px !important; 
             }
             
             .sub-header {
@@ -323,13 +329,14 @@ def home_header():
         unsafe_allow_html=True,
     )
 
-    # 2. RENDER THE MEGA TITLE WITH THE FIXES APPLIED
+    # 2. RENDER THE MEGA TITLE WRAPPED IN DIVS TO ESCAPE STREAMLIT LINK ANCHOR INJECTION
     st.markdown(
         """
         <div class="hero-container">
-            <h2 class="mega-header">
-                HACKATHON<span class="stem-container"><span class="stem-s">S</span><span class="stem-t">T</span><span class="stem-e">E</span><span class="stem-m">M</span></span>
-            </h2>
+            <div class="stem-container">
+                <span class="stem-s">S</span><span class="stem-t">T</span><span class="stem-e">E</span><span class="stem-m">M</span>
+            </div>
+            <div class="mega-header">HACKATHON</div>
         </div>
         """,
         unsafe_allow_html=True,
