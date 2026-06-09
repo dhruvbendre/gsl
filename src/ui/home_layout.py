@@ -139,8 +139,19 @@ def home_header():
             width: 100% !important;
             padding-top: 1rem !important;
             padding-bottom: 0rem !important; 
-            margin-bottom: -1.5rem !important; 
+            margin-bottom: 0rem !important; 
             text-align: center !important;      
+        }
+        
+        /* HIDE THE HOVER LINK ICON ENTIRELY ON ALL SCREEN SIZES */
+        .hero-container a.element-anchor,
+        [data-testid="stMarkdownContainer"] a.element-anchor {
+            display: none !important;
+            visibility: hidden !important;
+            width: 0px !important;
+            height: 0px !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
         
         /* THE ANIMATED MEGA HEADER */
@@ -169,17 +180,23 @@ def home_header():
             100% { background-position: -200% center; transform: scale(1); }
         }
 
-        /* INDIVIDUAL POP-ART STEM COLORS (Inspired by your custom theme layouts) */
+        /* INDIVIDUAL POP-ART STEM COLORS WITH THICK BLACK BORDER STROKE */
         .stem-container {
             display: inline-block;
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
             margin-left: 15px;
         }
-        .stem-s { color: #8BE314 !important; -webkit-text-fill-color: #8BE314 !important; } /* Vibrant Pop Green */
-        .stem-t { color: #FFD200 !important; -webkit-text-fill-color: #FFD200 !important; } /* Bright Canary Yellow */
-        .stem-e { color: #7B2CBF !important; -webkit-text-fill-color: #7B2CBF !important; } /* Retro Comic Purple */
-        .stem-m { color: #FF007A !important; -webkit-text-fill-color: #FF007A !important; } /* Neon Electric Pink */
+        .stem-container span {
+            /* Cross-browser thick black outline text border stroke */
+            -webkit-text-stroke: 2px #000000 !important;
+            text-stroke: 2px #000000;
+            paint-order: stroke fill; /* Ensures the thick black border sits behind the colored fill */
+        }
+        .stem-s { color: #8BE314 !important; -webkit-text-fill-color: #8BE314 !important; } 
+        .stem-t { color: #FFD200 !important; -webkit-text-fill-color: #FFD200 !important; } 
+        .stem-e { color: #7B2CBF !important; -webkit-text-fill-color: #7B2CBF !important; } 
+        .stem-m { color: #FF007A !important; -webkit-text-fill-color: #FF007A !important; }
                 
         .sub-header {
             font-family: 'Fredoka', sans-serif !important;
@@ -204,7 +221,6 @@ def home_header():
 
         /* Targeted Mobile Breakpoint (Phones) */
         @media (max-width: 740px) {
-            /* Kill default left-alignment on all Streamlit parent wrapper containers */
             .hero-container, 
             .hero-container div, 
             [data-testid="stMarkdownContainer"] .hero-container {
@@ -217,28 +233,21 @@ def home_header():
                 margin: 0 auto !important;
             }
             
-            /* ADDED: Kill the layout space of the link anchor to prevent visual shifting */
-            .hero-container a.element-anchor {
-                display: none !important;
-                width: 0px !important;
-                margin: 0 !important;
-                padding: 0 !important;
-            }
-            
             .mega-header { 
-                font-size: 2.8rem !important;     /* Fits 'HACKATHON' onto a single row cleanly */
-                letter-spacing: 0px !important;   /* Eliminates horizontal spacing bias gaps */
+                font-size: 2.8rem !important;     
+                letter-spacing: 0px !important;   
                 line-height: 1.1 !important;      
                 text-align: center !important;
                 margin: 0 auto !important;
-                display: block !important;        /* Structural switch overrides default element constraints */
+                display: block !important;        
                 width: 100% !important;
             }
 
             .stem-container {
                 margin-left: 0px !important;
                 margin-top: 5px !important;
-                display: block !important;         /* Clean line drop stacking switch on mobile phones */
+                display: block !important;         
+                margin-bottom: -10px !important; 
             }
             
             .sub-header {
@@ -255,13 +264,12 @@ def home_header():
         /* --- INFO CARDS HORIZONTAL 3-COLUMN LAYOUT --- */
         .card-container {
             display: grid;
-            grid-template-columns: 1fr; /* Defaults to single column for mobile screen boundaries */
+            grid-template-columns: 1fr; 
             gap: 1.5rem;
             width: 100%;
             padding: 1rem 0rem;
         }
 
-        /* Tablet & Desktop Breakpoint: Forces exactly 3 items inline without breaking layouts */
         @media (min-width: 768px) {
             .card-container {
                 grid-template-columns: repeat(3, 1fr) !important;
@@ -280,12 +288,11 @@ def home_header():
             flex-direction: column;
         }
 
-        /* Fun hover animation when kids or parents mouse over the cards */
         .info-card:hover {
             transform: translateY(-4px) scale(1.02) !important;
             box-shadow: 8px 8px 0px #000000 !important;
             background-color: rgba(255, 255, 255, 0.18) !important;
-            border-color: #A3FFF4 !important; /* Soft glowing border highlight */
+            border-color: #A3FFF4 !important; 
         }
 
         .card-icon {
@@ -298,7 +305,7 @@ def home_header():
             font-family: 'Fredoka', sans-serif !important;
             font-size: 1.5rem !important;
             font-weight: 700 !important;
-            color: #A3FFF4 !important; /* Bright cyan titles look crisp against dark teal */
+            color: #A3FFF4 !important; 
             margin: 0.2rem 0rem 0.6rem 0rem !important;
             line-height: 1.3 !important;
         }
@@ -316,7 +323,7 @@ def home_header():
         unsafe_allow_html=True,
     )
 
-    # 2. RENDER THE MEGA TITLE WITH CUSTOM POP-ART STEM COLORS
+    # 2. RENDER THE MEGA TITLE WITH THE FIXES APPLIED
     st.markdown(
         """
         <div class="hero-container">
