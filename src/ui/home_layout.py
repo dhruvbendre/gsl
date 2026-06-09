@@ -42,51 +42,46 @@ def home_header():
         }
 
         /* --- GLOBAL NATIVE STREAMLIT BUTTON OVERRIDES ("BUTTON-53" POP ART DESIGN) --- */
-        /* Target BOTH normal buttons and download buttons explicitly */
         div.stButton > button, 
         div.stDownloadButton > button,
         div.stDownloadButton > a {
             background-color: #3DD1E7 !important;
-            border: 3px solid #000000 !important; /* Thick comic casing */
+            border: 3px solid #000000 !important; 
             box-sizing: border-box !important;
             color: #000000 !important;
             display: flex !important;
-            
-            /* --- FORCE PUNCHY "LUCKIEST GUY" TYPOGRAPHY FOR KIDS --- */
             font-family: 'Luckiest Guy', cursive !important;
-            font-size: 1.15rem !important;       /* Adjusted down to keep long labels on one row */
+            font-size: 1.15rem !important;       
             letter-spacing: 0.5px !important;
             text-transform: uppercase !important; 
-            
             justify-content: center !important;
-            align-items: center !important;      /* Centers text vertically inside the button */
-            line-height: 1.2rem !important;       /* Tightened line height prevents container clipping */
-            padding: .6rem 1rem !important;       /* Clean padding gives text breathing room */
+            align-items: center !important;      
+            line-height: 1.2rem !important;       
+            padding: .6rem 1rem !important;       
             position: relative !important;
             text-align: center !important;
             text-decoration: none !important;
             width: 100% !important;
             max-width: 460px !important;
             cursor: pointer !important;
-            transform: rotate(-2deg) !important; /* Classic organic tilt angle */
+            transform: rotate(-2deg) !important; 
             user-select: none !important;
             -webkit-user-select: none !important;
             touch-action: manipulation !important;
-            border-radius: 12px !important; /* Thick curved block edges */
-            box-shadow: 4px 4px 0px #000000 !important; /* Flat heavy retro shadow dropped down */
+            border-radius: 12px !important; 
+            box-shadow: 4px 4px 0px #000000 !important; 
             transition: all 0.1s ease !important;
-            white-space: nowrap !important;      /* CRITICAL: Disallows text wrapping entirely */
+            white-space: nowrap !important;      
         }
 
-        /* Prevent Streamlit inner paragraph markers from stepping on the comic typography choice */
         div.stButton > button p, 
         div.stDownloadButton > button p,
         div.stDownloadButton > a span {
             font-family: 'Luckiest Guy', cursive !important;
             color: #000000 !important;
             font-size: 1.15rem !important;
-            white-space: nowrap !important;      /* Forces inner text components to never warp */
-            margin: 0 !important;                /* Strip default layout spacing margins */
+            white-space: nowrap !important;      
+            margin: 0 !important;                
             padding: 0 !important;
         }
 
@@ -101,7 +96,7 @@ def home_header():
         div.stButton > button:hover,
         div.stDownloadButton > button:hover,
         div.stDownloadButton > a:hover {
-            background-color: #A3FFF4 !important; /* Glow up neon highlight on interaction hover */
+            background-color: #A3FFF4 !important; 
             color: #000000 !important;
             transform: rotate(-2deg) scale(1.02) !important;
             box-shadow: 6px 6px 0px #000000 !important;
@@ -114,13 +109,12 @@ def home_header():
             box-shadow: 2px 2px 0px #000000 !important;
         }
 
-        /* Desktop Media Breakpoint: Scales up sizing cleanly when screen allows */
         @media (min-width: 768px) {
             div.stButton > button,
             div.stDownloadButton > button,
             div.stDownloadButton > a {
-                padding: .75rem 2rem !important;  /* Strategic horizontal desktop spacing */
-                font-size: 1.35rem !important;    /* Clean size configuration that avoids breaks */
+                padding: .75rem 2rem !important;  
+                font-size: 1.35rem !important;    
             }
             div.stButton > button p, 
             div.stDownloadButton > button p {
@@ -128,22 +122,19 @@ def home_header():
             }
         }
 
-        /* --- END OF BUTTON-53 LAYERING --- */
-
-        /* Centered Hero Header Container */
+        /* --- HERO TEXT CENTERED CONTAINER DESIGN --- */
         .hero-container {
             display: flex !important;
             flex-direction: column !important;
             justify-content: center !important; 
             align-items: center !important;     
             width: 100% !important;
-            padding-top: 1rem !important;
-            padding-bottom: 0rem !important; 
-            margin-bottom: 0rem !important; 
+            padding: 1rem 0rem 0rem 0rem !important; 
+            margin: 0px auto !important; 
             text-align: center !important;      
         }
         
-        /* HIDE ANY GHOST STREAMLIT ANCHORS FORCEFULLY */
+        /* HIDE ANY INJECTED NATIVE STREAMLIT ELEMENT LINKS ENTIRELY */
         .hero-container a, 
         .hero-container a.element-anchor,
         [data-testid="stMarkdownContainer"] a.element-anchor {
@@ -172,8 +163,6 @@ def home_header():
             background-clip: text !important;
             -webkit-text-fill-color: transparent !important;
             animation: shineShimmer 4s linear infinite !important;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         @keyframes shineShimmer {
@@ -182,23 +171,30 @@ def home_header():
             100% { background-position: -200% center; transform: scale(1); }
         }
 
-        /* POSTER-MATCHED COMIC LAYOUT FOR STEM */
-        .stem-container {
-            display: block;
+        /* HARD FORCED HORIZONTAL INLINE ROW BOX FOR S-T-E-M */
+        div.hero-container div.stem-container {
+            display: flex !important;
+            flex-direction: row !important; /* FORCES side-by-side assembly always */
+            justify-content: center !important;
+            align-items: center !important;
+            flex-wrap: nowrap !important; /* Restricts wrapping rules entirely */
             font-family: 'Luckiest Guy', cursive !important;
             font-size: 6.5rem !important;
             line-height: 1.0 !important;
-            margin-bottom: 0.5rem !important;
+            margin-bottom: 0.2rem !important;
             letter-spacing: 2px !important;
-            white-space: nowrap !important; /* Prevent separation on desktop layout rows */
+            width: auto !important;
         }
-        .stem-container span {
+        
+        div.hero-container div.stem-container span {
             display: inline-block !important;
             -webkit-text-stroke: 3px #000000 !important;
             text-stroke: 3px #000000;
             paint-order: stroke fill;
             filter: drop-shadow(4px 4px 0px #000000);
+            margin: 0px 4px !important;
         }
+        
         .stem-s { color: #8BE314 !important; -webkit-text-fill-color: #8BE314 !important; } 
         .stem-t { color: #FFD200 !important; -webkit-text-fill-color: #FFD200 !important; } 
         .stem-e { color: #7B2CBF !important; -webkit-text-fill-color: #7B2CBF !important; } 
@@ -212,7 +208,6 @@ def home_header():
             margin-top: 0.8rem !important; 
             margin-bottom: 0px !important;
             padding: 0 !important;
-            letter-spacing: 0px !important; 
         }
         
         h3, h4, p, h3 span, h4 span, p span, li {
@@ -220,13 +215,13 @@ def home_header():
             color: #FFFFFF !important;
         }
 
-        /* --- MOBILE RESPONSIVE MEDIA BREAKPOINTS --- */
+        /* --- RESPONSIVE MOBILE MEDIA SCALING OVERRIDES --- */
         @media (max-width: 992px) {
             .mega-header { font-size: 4rem !important; letter-spacing: -1px !important; }
-            .stem-container { font-size: 5rem !important; }
+            div.hero-container div.stem-container { font-size: 5rem !important; }
         }
 
-        /* Targeted Mobile Breakpoint (Phones) */
+        /* Universal Smart Phones Breakpoint Viewports */
         @media (max-width: 740px) {
             .hero-container, 
             .hero-container div, 
@@ -237,45 +232,41 @@ def home_header():
                 align-items: center !important;
                 text-align: center !important;
                 width: 100% !important;
-                margin: 0 auto !important;
             }
             
             .mega-header { 
                 font-size: 2.8rem !important;     
                 letter-spacing: 0px !important;   
                 line-height: 1.1 !important;      
-                text-align: center !important;
-                margin: 0 auto !important;
                 display: block !important;        
                 width: 100% !important;
             }
 
-            /* FIXED: Forces letters to stick side-by-side on mobile phones */
-            .stem-container {
-                font-size: 4rem !important;
+            /* FORCE MOBILES SCREEN WRAPPERS TO NOT BREAK HORIZONTAL ROW DIRECTION */
+            div.hero-container div.stem-container {
+                display: flex !important;
+                flex-direction: row !important; /* Absolute side-by-side row force */
+                flex-wrap: nowrap !important;
+                justify-content: center !important;
+                font-size: 4.2rem !important; 
                 margin-top: 0px !important;
                 margin-bottom: 0px !important;
-                display: block !important;         
-                white-space: nowrap !important; /* CRITICAL: Absolutely blocks text-wrapping down columns */
-                width: 100% !important;
+                width: auto !important;
             }
 
-            .stem-container span {
-                display: inline-block !important; /* Locks individual components side by side */
+            div.hero-container div.stem-container span {
+                display: inline-block !important;
+                -webkit-text-stroke: 2px #000000 !important; /* Scaled down outline for tiny phone viewports */
+                text-stroke: 2px #000000;
             }
             
             .sub-header {
                 font-size: 1.4rem !important;    
-                text-align: center !important;
                 width: 100% !important;
-            }
-            
-            .block-container {
-                padding-top: 1rem !important;    
             }
         }
                 
-        /* --- INFO CARDS HORIZONTAL 3-COLUMN LAYOUT --- */
+        /* --- INFO CARDS --- */
         .card-container {
             display: grid;
             grid-template-columns: 1fr; 
@@ -285,9 +276,7 @@ def home_header():
         }
 
         @media (min-width: 768px) {
-            .card-container {
-                grid-template-columns: repeat(3, 1fr) !important;
-            }
+            .card-container { grid-template-columns: repeat(3, 1fr) !important; }
         }
 
         .info-card {
@@ -309,19 +298,12 @@ def home_header():
             border-color: #A3FFF4 !important; 
         }
 
-        .card-icon {
-            font-size: 2.2rem !important;
-            margin-bottom: 0.5rem !important;
-            display: inline-block;
-        }
-
         .card-title {
             font-family: 'Fredoka', sans-serif !important;
             font-size: 1.5rem !important;
             font-weight: 700 !important;
             color: #A3FFF4 !important; 
             margin: 0.2rem 0rem 0.6rem 0rem !important;
-            line-height: 1.3 !important;
         }
 
         .card-body {
@@ -330,14 +312,13 @@ def home_header():
             font-weight: 400 !important;
             color: #FFFFFF !important;
             line-height: 1.5 !important;
-            margin: 0 !important;
         }
         </style>
         """,
         unsafe_allow_html=True,
     )
 
-    # 2. RENDER THE MEGA TITLE
+    # 2. RENDER THE MEGA TITLE WITH THE INLINE ROW FLEX-BOX DIRECTLY IMPLEMENTED
     st.markdown(
         """
         <div class="hero-container">
