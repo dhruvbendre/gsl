@@ -133,6 +133,7 @@ def home_header():
         /* Centered Hero Header Container */
         .hero-container {
             display: flex !important;
+            flex-direction: column !important;
             justify-content: center !important; 
             align-items: center !important;     
             width: 100% !important;
@@ -145,10 +146,10 @@ def home_header():
         /* THE ANIMATED MEGA HEADER */
         .mega-header {
             font-family: 'Montserrat', sans-serif;
-            font-size: 6.5rem !important;  
+            font-size: 5.5rem !important;  
             font-weight: 900 !important;   
-            letter-spacing: -4px !important; 
-            line-height: 0.85 !important;
+            letter-spacing: -2px !important; 
+            line-height: 0.95 !important;
             margin: 0 auto !important; 
             text-transform: uppercase;
             display: inline-block;
@@ -167,6 +168,18 @@ def home_header():
             50% { transform: scale(1.015); }
             100% { background-position: -200% center; transform: scale(1); }
         }
+
+        /* INDIVIDUAL POP-ART STEM COLORS (Inspired by your custom theme layouts) */
+        .stem-container {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            margin-left: 15px;
+        }
+        .stem-s { color: #8BE314 !important; -webkit-text-fill-color: #8BE314 !important; } /* Vibrant Pop Green */
+        .stem-t { color: #FFD200 !important; -webkit-text-fill-color: #FFD200 !important; } /* Bright Canary Yellow */
+        .stem-e { color: #7B2CBF !important; -webkit-text-fill-color: #7B2CBF !important; } /* Retro Comic Purple */
+        .stem-m { color: #FF007A !important; -webkit-text-fill-color: #FF007A !important; } /* Neon Electric Pink */
                 
         .sub-header {
             font-family: 'Fredoka', sans-serif !important;
@@ -186,7 +199,7 @@ def home_header():
 
         /* --- NEW: MOBILE RESPONSIVE MEDIA BREAKPOINTS --- */
         @media (max-width: 992px) {
-            .mega-header { font-size: 4.5rem !important; letter-spacing: -2px !important; }
+            .mega-header { font-size: 4rem !important; letter-spacing: -1px !important; }
         }
 
         /* Targeted Mobile Breakpoint (Phones) */
@@ -196,6 +209,7 @@ def home_header():
             .hero-container div, 
             [data-testid="stMarkdownContainer"] .hero-container {
                 display: flex !important;
+                flex-direction: column !important;
                 justify-content: center !important;
                 align-items: center !important;
                 text-align: center !important;
@@ -219,6 +233,12 @@ def home_header():
                 margin: 0 auto !important;
                 display: block !important;        /* Structural switch overrides default element constraints */
                 width: 100% !important;
+            }
+
+            .stem-container {
+                margin-left: 0px !important;
+                margin-top: 5px !important;
+                display: block !important;         /* Clean line drop stacking switch on mobile phones */
             }
             
             .sub-header {
@@ -296,11 +316,13 @@ def home_header():
         unsafe_allow_html=True,
     )
 
-    # 2. RENDER THE MEGA TITLE
+    # 2. RENDER THE MEGA TITLE WITH CUSTOM POP-ART STEM COLORS
     st.markdown(
         """
         <div class="hero-container">
-            <h2 class="mega-header">HACKATHON STEM</h2>
+            <h2 class="mega-header">
+                HACKATHON<span class="stem-container"><span class="stem-s">S</span><span class="stem-t">T</span><span class="stem-e">E</span><span class="stem-m">M</span></span>
+            </h2>
         </div>
         """,
         unsafe_allow_html=True,
