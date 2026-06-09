@@ -195,22 +195,17 @@ def home_header():
             margin: 0px 4px !important;
         }
         
-        .stem-s { 
+        .stem-s, .stem-t, .stem-e, .stem-m { 
             color: #FFFFFF !important; 
             -webkit-text-fill-color: #FFFFFF !important; 
-        } 
-        .stem-t { 
-            color: #FFFFFF !important; 
-            -webkit-text-fill-color: #FFFFFF !important; 
-        } 
-        .stem-e { 
-            color: #FFFFFF !important; 
-            -webkit-text-fill-color: #FFFFFF !important; 
-        } 
-        .stem-m { 
-            color: #FFFFFF !important; 
-            -webkit-text-fill-color: #FFFFFF !important; 
+            transition: color 0.4s ease, -webkit-text-fill-color 0.4s ease;
         }
+
+        /* 2. Define the hover states for each letter */
+        .stem-s:hover { color: #8BE314 !important; -webkit-text-fill-color: #8BE314 !important; }
+        .stem-t:hover { color: #FFD200 !important; -webkit-text-fill-color: #FFD200 !important; }
+        .stem-e:hover { color: #7B2CBF !important; -webkit-text-fill-color: #7B2CBF !important; }
+        .stem-m:hover { color: #FF007A !important; -webkit-text-fill-color: #FF007A !important; }
                 
         .sub-header {
             font-family: 'Fredoka', sans-serif !important;
