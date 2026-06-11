@@ -1,4 +1,5 @@
 import os
+import smtplib
 import streamlit as st
 from agno.agent import Agent
 from agno.models.groq import Groq
@@ -12,18 +13,29 @@ def trigger_agno_groq_email(recipient_email, fullname, teamname):
     elif "API_KEY" in st.secrets:
         os.environ["GROQ_API_KEY"] = st.secrets["API_KEY"]
 
-    # FIX: Initialize EmailTools with the dynamic destination directly into the instance metadata
+    # Initialize EmailTools to use its internal connection setup
     email_tools = EmailTools(
         sender_email=st.secrets["email"]["sender_email"],
         sender_passkey=st.secrets["email"]["sender_password"], 
         sender_name="GetSetLearn Team",
-        receiver_email=recipient_email  # <--- Core Structural Alignment Fix
+        receiver_email=recipient_email
     )
+
+    # FIX: Define a clean, explicit wrapper function. 
+    # Agno reads these exact parameter names and type hints to build a flawless schema for Groq.
+    def send_confirmation_email(subject: str, body: str) -> str:
+        """Sends a confirmation email to the user with a specified subject and body text."""
+        try:
+            # Safely invoke the underlying tool method directly
+            return email_tools.email_user(subject=subject, body=body)
+        except Exception as error:
+            return f"Failed to send email: {str(error)}"
 
     # 2. Build the Groq-powered Agent
     hackathon_agent = Agent(
         model=Groq(id="qwen/qwen3-32b"),
-        tools=[email_tools, DuckDuckGoTools()],
+        # Use our clean wrapper function 'send_confirmation_email' instead of the raw tool instance
+        tools=[send_confirmation_email, DuckDuckGoTools()], 
         description=(
             "You are the official operations coordinator agent for the STEM Hackathon GetSetLearn. "
             "Your job is to send beautifully formatted confirmation emails to newly registered teams."
@@ -33,8 +45,8 @@ def trigger_agno_groq_email(recipient_email, fullname, teamname):
             "Explicitly include the recipient's Full Name and Team Name inside the email text.",
             "Outline key hackathon parameters: it is for kids/students only, late submissions are invalid, and mischief leads to disqualification.",
             "Use DuckDuckGoTools only if you need to double-check general STEM hackathon engagement guidelines, otherwise prioritize sending.",
-            # Adjusted instruction to match the underlying 'email_user' target function signature
-            "Immediately execute the email tool function to transmit the message to the user."
+            # Point the agent to use our custom wrapper name
+            "Immediately execute the send_confirmation_email tool function to transmit the message to the user."
         ]
     )
 
