@@ -9,9 +9,9 @@ from src.database.db import get_team_mem
 def register_dialog():
     col1,col2 = st.columns(2)
     with col1:
-        fullname = st.text_input("Team Leaders Name*",placeholder="DhruvBendre")
+        fullname = st.text_input("Team Leaders Name*",placeholder="DhruvBendre",key="leader_fullname")
     with col2:
-        email = st.text_input("Gmail*",placeholder="abcd@gmail.com")
+        email = st.text_input("Gmail*",placeholder="abcd@gmail.com",key="leader_email")
 
     col3,col4 = st.columns(2)
     with col3:
@@ -21,7 +21,7 @@ def register_dialog():
 
     col5,col6 = st.columns(2)
     with col5:
-        teamname = st.text_input("Team Name*",placeholder="Tech Titans")
+        teamname = st.text_input("Team Name*",placeholder="Tech Titans",key="registered_teamname")
     with col6:
         teamsize = st.text_input("Team Size(Max 4)*")
 

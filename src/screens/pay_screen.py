@@ -10,6 +10,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 from src.ui.base_layout import style_base_layout
+from src.pipelines.mail_sender import trigger_agno_groq_email
 
 
 def generate_qr(data_string):
@@ -120,12 +121,35 @@ def pay_screen():
         st.session_state.payment_done = False
 
     col3, col4 = st.columns(2)
-    
     with col3:
-    # Clicking this button flips our session state variable to True
-        if st.button("Payment Complete", width="stretch", key="payment_btn"):
-            st.session_state.payment_done = True
-            st.rerun()
+        with col3:
+            if st.button("Payment Complete", use_container_width=True, key="payment_btn"):
+                with st.spinner("Processing registration and sending confirmation..."):
+                    
+                    # FIX 2: Use the verified fields extracted above to ensure data is never None
+                    target_email = email
+                    target_name = fullname
+                    target_team = teamname
+                    
+                    if target_email and target_email != "N/A":
+                        # Trigger your Agno-Groq agent pipeline directly
+                        success = trigger_agno_groq_email(
+                            recipient_email=target_email, 
+                            fullname=target_name, 
+                            teamname=target_team
+                        )
+                        
+                        if success:
+                            st.toast(f"🚀 Success! Email sent to {target_email}")
+                        else:
+                            st.toast("⚠️ Data logged, but the AI email delivery encountered an issue.")
+                    else:
+                        st.error("Could not trace a valid target registration email address for this session.")
+                        
+                st.session_state.payment_done = True
+                st.rerun()
+
+                
     with col4:
     # If payment is successful, render the Download button on the same line instantly!
         if st.session_state.payment_done:
